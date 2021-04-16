@@ -1,15 +1,32 @@
 //LOAD DATA
+const fs = require("fs");
 const db = require('../db/db.json');
 
 //ROUTING
 
 module.exports = (app) => {
     // * `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
-    //TODO: does this return all saved notes as JSON?
-    app.get('/api/notes', (req, res) => res.json(db));
+    app.get('/api/notes', (req, res) => {
+        console.log("route hit");
+        return res.sendFile(path.join(__dirname, "./db/db.json"));
 
+    });
 
-    //TODO: * `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into `npm` packages that could do this for you).
-    // app.post('/api/notes', (req, res) => );
+    app.post('/api/notes', (req, res) => {
+        //write file sync
+        try {
+            let notes = JSON.parse(fs.readFileSync("./db/db.json", 'utf-8'))
+            notes.push(req.body)
+            fs.writeFileSync("./db/db.json", JSON.stringify(notes), "utf-8")
+        } catch (error) {
+            console.log(error)
+        }
+    });
 
 }
+
+
+
+
+
+//need a unique id to be able to delete

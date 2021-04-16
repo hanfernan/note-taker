@@ -9,12 +9,12 @@ const PORT = process.env.PORT || 8080;
 //SETS UP EXPRESS 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//TODO: is this the right place for this?
 app.use(express.static(path.join(__dirname, 'public')));
 
 //ROUTER
-require('./routes/htmlRoutes')(app);
 require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
+
 
 // LISTENER
 app.listen(PORT, () => {
