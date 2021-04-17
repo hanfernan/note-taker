@@ -6,7 +6,8 @@ I wrote the server.js and route files for this application. A user can write and
 
 ## Deployed Site
 
-![Note Taker on GitHub]()
+![Note Taker on Heroku](https://serene-fjord-64440.herokuapp.com/)
+
 [Home page](./public/assets/images/screenshot1.png)
 
 [Notes page](./public/assets/images/screenshot2.png)
