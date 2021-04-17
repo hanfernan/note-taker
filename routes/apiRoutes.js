@@ -2,6 +2,7 @@
 const fs = require("fs");
 const db = require('../db/db.json');
 const path = require("path");
+// const uuid = require('uuid/v1');
 
 //ROUTING
 
@@ -15,7 +16,7 @@ module.exports = (app) => {
 
     //allows user to post new notes
     app.post('/api/notes', (req, res) => {
-        //write file sync
+
         try {
             let notes = JSON.parse(fs.readFileSync("./db/db.json", 'utf-8'))
             notes.push(req.body)
@@ -24,10 +25,8 @@ module.exports = (app) => {
         } catch (error) {
             console.log(error)
         }
+        
     });
-
-    
-
 
 }
 
